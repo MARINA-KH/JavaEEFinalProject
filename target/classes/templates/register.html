@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+                   <h3>Register</h3>
+                    <form id="registerForm">
+                        <label>Login
+                            <input name="username" placeholder="Login">
+                        </label>
+                        <label>Password
+                            <input name="password" type="password" placeholder="Password">
+                        </label>
+                        <label>Custom Auth Field
+                            <input name="customAuthField" type="password" placeholder="Custom Auth Filed">
+                        </label>
+                        <button type="submit">Sign up</button>
+                    </form>
+                <div id="registerError"> </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(
+        function () {
+            $('#registerForm').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/register',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        login: $(this).find('[name=username]').val(),
+                        password: $(this).find('[name=password]').val(),
+                        customAuthField: $(this).find('[name=customAuthField]').val(),
+                    }),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                    },
+                    success: function () {
+                        window.location.href = window.location.origin + "/";
+                    },
+                    error: function (xhr) {
+                        let $formError = $('#registerError');
+                        $formError.empty();
+                        $formError.append('<p style="color: red">' + JSON.stringify(xhr.responseJSON, null, 4) + '</p>');
+                    }
+                })
+            });
+
+        });
+</script>
+</body>
+</html>
