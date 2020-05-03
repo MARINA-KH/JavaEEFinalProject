@@ -1,6 +1,5 @@
 package com.example.demo.storage_models.entities;
 
-import com.example.demo.model.type.Permission;
 import com.example.demo.storage_models.UserGroup;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
