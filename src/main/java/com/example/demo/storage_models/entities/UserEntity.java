@@ -1,40 +1,43 @@
-package com.example.demo.storage_models.entities;
+package com.example.demo.model;
 
-import com.example.demo.storage_models.UserGroup;
 import lombok.*;
+
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Getter
 public class UserEntity {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private Integer id;
 
-    @Column(name ="name", unique = true)
-    public String name;
-
-    @Column(name ="email", unique = true)
-    public String email;
+    @Column(name = "login", unique = true)
+    private String name;
 
     @Column(name = "password")
-    public String password;
+    private String password;
+
+
+    @Column(name = "email")
+    private String email;
 
     @ManyToMany
     @JoinTable(
-            name="user_to_permissions",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="group_id")
+            name = "user_to_permissions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    private List<UserGroup> group;
+    private List<PermissionEntity> permissions;
+
 
 }
