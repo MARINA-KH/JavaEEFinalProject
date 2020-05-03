@@ -1,22 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.BookEntity;
 import com.example.demo.model.PermissionEntity;
 import com.example.demo.model.UserEntity;
 import com.example.demo.model.dto.UserDto;
-import com.example.demo.model.security.MyCustomUserDetails;
 import com.example.demo.model.type.Permission;
 import com.example.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class UserController {
@@ -26,7 +21,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
+/*
     @PreAuthorize("isFullyAuthenticated()")
     @GetMapping("/user-details")
     public ResponseEntity<MyCustomUserDetails> userDetails() {
@@ -57,18 +52,18 @@ public class UserController {
         UserEntity userEntity = userService.deleteUsersLikedBooks(userDetails.getUsername(), Integer.parseInt(bookId));
         return ResponseEntity.ok(userEntity.getLikedBooks());
     }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+*/
+    @RequestMapping(value = "/add-user", method = RequestMethod.POST)
     public ResponseEntity<UserDto> registerUserController(@Valid @RequestBody final UserDto userModel) {
         System.out.println(userModel.getPassword());
         List<PermissionEntity> permissions = new ArrayList<>();
         permissions.add(new PermissionEntity(1, Permission.LIKED_BOOK));
         permissions.add(new PermissionEntity(2, Permission.VIEW_CATALOG));
-        UserEntity userEntity = userService.registerUser(userModel.getLogin(), userModel.getPassword(), userModel.getCustomAuthField(), permissions);
+        UserEntity userEntity = userService.registerUser(userModel.getLogin(), userModel.getPassword(), userModel.getEmail(), permissions);
         UserDto userDTO = new UserDto();
         userDTO.setId(userEntity.getId());
         userDTO.setPassword(null);
-        userDTO.setCustomAuthField(userEntity.getCustomAuthField());
+        userDTO.setEmail(userEntity.getEmail());
         userDTO.setLogin(userEntity.getLogin());
         return ResponseEntity.ok(userDTO);
     }
