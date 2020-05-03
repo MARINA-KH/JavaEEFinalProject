@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -25,5 +26,12 @@ public class CategoryEntity {
     @Column(name = "description", unique = true)
     public String description;
 
+    @OneToMany
+    @JoinTable(
+            name="category_to_item",
+            joinColumns = @JoinColumn(name="category_id"),
+            inverseJoinColumns = @JoinColumn(name="item_id")
+    )
+    public List<ItemEntity> items;
 
 }

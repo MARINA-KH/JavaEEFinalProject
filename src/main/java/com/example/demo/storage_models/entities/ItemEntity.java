@@ -27,6 +27,7 @@ public class ItemEntity {
     public int quantity;
     @Column(name = "price")
     public double price;
+
     @Column(name = "category_id")
     @ManyToOne
     @JoinTable(
