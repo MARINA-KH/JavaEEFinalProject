@@ -1,14 +1,16 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.CategoryEntity;
-import com.example.demo.model.dto.CategoryDto;
-import com.example.demo.model.dto.SearchDto;
+import com.example.demo.service.CategoryService;
+import com.example.demo.storage_models.dto.CategoryDto;
+import com.example.demo.storage_models.entities.CategoryEntity;
+import com.example.demo.storage_models.entities.ItemEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,26 +23,25 @@ public class CategoryController {
 
     @ResponseBody
     @GetMapping(value = "/groups")
-    public List<CategoryEntity> itemGet() {
-        return categoryService.findAllCategories();
+    public List<CategoryEntity> getAll() {
+        return categoryService.getAll();
     }
 
     @PreAuthorize("hasAuthority('VIEW_ADMIN')")
     @RequestMapping(value = "/groups/{groupId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Set<CategoryEntity>> ItemDelete(@PathVariable String groupId) {
-        Set<CategoryEntity> categories = categoryService.deleteCategory(Integer.parseInt(groupId));
-        return ResponseEntity.ok(categories);
+    public ResponseEntity<List<CategoryEntity>> ItemDelete(@PathVariable String groupId) {
+       categoryService.deleteCategory(Integer.parseInt(groupId));
+        return ResponseEntity.ok(categoryService.getAll());
     }
 
     @PreAuthorize("hasAuthority('VIEW_ADMIN')")
     @RequestMapping(value = "/add-group", method = RequestMethod.POST)
     public ResponseEntity<CategoryDto> bookFormControllerPost(@Valid @RequestBody final CategoryDto categoryModel) {
 
-        CategoryEntity itemEntity = categoryService.createCategory(categoryModel.getName(), categoryModel.getDescription(), categoryModel.getItems());
+        CategoryEntity categoryEntity = categoryService.createCategory(categoryModel.getName(), categoryModel.getDescription() );
         CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setName(item.getAuthor());
-        categoryDto.setDescription(itemEntity.getDescription());
-        categoryDto.setCategory(itemEntity.getItems());
+        categoryDto.setName(categoryEntity.getName());
+        categoryDto.setDescription(categoryEntity.getDescription());
 
         return ResponseEntity.ok(categoryDto);
     }

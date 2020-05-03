@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.PermissionEntity;
-import com.example.demo.model.UserEntity;
-import com.example.demo.model.dto.UserDto;
-import com.example.demo.model.type.Permission;
 import com.example.demo.service.UserService;
+import com.example.demo.storage_models.Permission;
+import com.example.demo.storage_models.dto.UserDto;
+import com.example.demo.storage_models.entities.PermissionEntity;
+import com.example.demo.storage_models.entities.UserEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -56,15 +56,15 @@ public class UserController {
     @RequestMapping(value = "/add-user", method = RequestMethod.POST)
     public ResponseEntity<UserDto> registerUserController(@Valid @RequestBody final UserDto userModel) {
         System.out.println(userModel.getPassword());
+        System.out.println("==========================================================================================================================================");
         List<PermissionEntity> permissions = new ArrayList<>();
-        permissions.add(new PermissionEntity(1, Permission.LIKED_BOOK));
-        permissions.add(new PermissionEntity(2, Permission.VIEW_CATALOG));
-        UserEntity userEntity = userService.registerUser(userModel.getLogin(), userModel.getPassword(), userModel.getEmail(), permissions);
+        permissions.add(new PermissionEntity(1, Permission.VIEW_USER));
+        UserEntity userEntity = userService.registerUser(userModel.getName(), userModel.getPassword(), userModel.getEmail(), permissions);
         UserDto userDTO = new UserDto();
         userDTO.setId(userEntity.getId());
         userDTO.setPassword(null);
         userDTO.setEmail(userEntity.getEmail());
-        userDTO.setLogin(userEntity.getLogin());
+        userDTO.setName(userEntity.getName());
         return ResponseEntity.ok(userDTO);
     }
 }

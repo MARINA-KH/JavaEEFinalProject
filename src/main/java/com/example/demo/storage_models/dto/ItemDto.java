@@ -1,5 +1,6 @@
 package com.example.demo.storage_models.dto;
 
+import com.example.demo.storage_models.entities.CategoryEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -31,4 +32,6 @@ public class ItemDto {
     public int quantity;
     @NotEmpty(message = "quantity cannot be empty")
     public double price;
+    @NotEmpty(message = "quantity cannot be empty")
+    public CategoryEntity category;
 }

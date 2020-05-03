@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.model.security.MyCustomUserDetails;
+import com.example.demo.storage_models.security.MyCustomUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.Value;

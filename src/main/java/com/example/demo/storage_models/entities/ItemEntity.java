@@ -19,7 +19,7 @@ public class ItemEntity {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
-    @Column(name = "name", unique = true)
+    @Column(name = "itemName", unique = true)
     public String name;
     @Column(name = "description")
     public String description;
@@ -28,14 +28,9 @@ public class ItemEntity {
     @Column(name = "price")
     public double price;
 
-    @Column(name = "category_id")
     @ManyToOne
-    @JoinTable(
-            name="item_to_category",
-            joinColumns = @JoinColumn(name="item_id"),
-            inverseJoinColumns = @JoinColumn(name="category_id")
-    )
-    public int category_id;
+    @JoinColumn(name="category_fk")
+    public CategoryEntity category;
 
 
 }

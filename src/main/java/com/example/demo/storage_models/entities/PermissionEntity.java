@@ -1,7 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.storage_models.entities;
 
-
-import com.example.demo.model.type.Permission;
+import com.example.demo.storage_models.Permission;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

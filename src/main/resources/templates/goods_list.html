@@ -35,9 +35,6 @@
                         <label>Name:
                             <input class="form-control" name="name" type="text">
                         </label>
-                        <label>Manufacturer:
-                            <input  class="form-control" name="manuf" type="text"/>
-                        </label>
                         <label>Price:
                             <input class="form-control" name="price" type="text"/>
                         </label>
@@ -68,9 +65,7 @@
                         <label>Password:
                             <input class="form-control" name="password" type="text"/>
                         </label>
-                        <label>User authority:
-                            <input class="form-control" name="auth" type="text"/>
-                        </label>
+
                         <button type="submit" class="btn btn-info btn-block my-4">Add</button>
                     </form>
 
@@ -132,7 +127,6 @@
                             <tr>
                                 <th class="text-center">Id</th>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">Manufacturer</th>
                                 <th class="text-center">Quantity</th>
                                 <th class="text-center">Price</th>
                                 <th class="text-center">Description</th>
@@ -152,7 +146,6 @@
                 <label class="h6">Search:
                     <select name="select" placeholder="Search by">
                         <option th:value="name">Name</option>
-                        <option th:value="manuf">Manufacturer</option>
                         <option th:value="price">Price</option>
                     </select>
                 </label>
@@ -185,7 +178,6 @@
                     dataType: 'json',
                     data: JSON.stringify({
                         name: $(this).find('[name=name]').val(),
-                        manufacturer: $(this).find('[name=manuf]').val(),
                         price: $(this).find('[name=price]').val(),
                         description: $(this).find('[name=descr]').val(),
                         quantity: $(this).find('[name=quant]').val()
@@ -242,11 +234,9 @@
                     url: '/add-user',
                     dataType: 'json',
                     data: JSON.stringify({
-                        username: $(this).find('[name=username]').val(),
+                        name: $(this).find('[name=username]').val(),
                         password: $(this).find('[name=password]').val(),
-                        email: $(this).find('[name=mail]').val(),
-                        permission: $(this).find('[name=auth]').val()
-
+                        email: $(this).find('[name=mail]').val()
                     }),
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -316,7 +306,6 @@
             data.forEach(good => {
             $goods.append('<tr><td>' + good.id + '</td>' +
                 '<td class="pt-3-half" >' + good.name + '</td>' +
-                '<td class="pt-3-half" >' + good.manufacturer + '</td>' +
                 '<td class="pt-3-half" >' + good.quantity + '</td>' +
                 '<td class="pt-3-half" >' + good.price + '</td>' +
                 '<td class="pt-3-half" >'+ good.description + '</td>' +

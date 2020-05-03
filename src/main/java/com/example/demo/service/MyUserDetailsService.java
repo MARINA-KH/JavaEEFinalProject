@@ -1,9 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.model.PermissionEntity;
-import com.example.demo.model.UserEntity;
-import com.example.demo.model.security.MyCustomUserDetails;
+
 import com.example.demo.repository.UserRepository;
+import com.example.demo.storage_models.entities.PermissionEntity;
+import com.example.demo.storage_models.entities.UserEntity;
+import com.example.demo.storage_models.security.MyCustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,8 +38,7 @@ public class MyUserDetailsService implements UserDetailsService {
                 username,
                 user.getPassword(),
                 mapAuthorities(user.getPermissions()),
-                user.getCustomAuthField(),
-                user.getLikedBooks()
+                user.getEmail()
         );
     }
 

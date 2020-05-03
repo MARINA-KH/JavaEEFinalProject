@@ -1,6 +1,5 @@
 package com.example.demo.storage_models.dto;
 
-import com.example.demo.storage_models.UserGroup;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

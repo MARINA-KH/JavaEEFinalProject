@@ -1,6 +1,5 @@
-package com.example.demo.model.security;
+package com.example.demo.storage_models.security;
 
-import com.example.demo.model.BookEntity;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;

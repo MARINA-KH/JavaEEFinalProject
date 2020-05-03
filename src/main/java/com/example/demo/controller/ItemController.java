@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.ItemEntity;
-import com.example.demo.model.dto.ItemDto;
 import com.example.demo.model.dto.SearchDto;
+import com.example.demo.service.ItemService;
+import com.example.demo.storage_models.dto.ItemDto;
+import com.example.demo.storage_models.entities.ItemEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,26 +27,25 @@ public class ItemController {
 
     @ResponseBody
     @GetMapping(value = "/goods")
-    public List<ItemEntity> itemGet() {
-        return itemService.findAllItems();
+    public List<ItemEntity> getAll() {
+        return itemService.getAll();
     }
 
     @PreAuthorize("hasAuthority('VIEW_ADMIN')")
     @RequestMapping(value = "/goods/{goodId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Set<ItemEntity>> ItemDelete(@PathVariable String goodId) {
-        Set<ItemEntity> items = itemService.deleteItem(Integer.parseInt(goodId));
-        return ResponseEntity.ok(items);
+    public ResponseEntity<List<ItemEntity>> ItemDelete(@PathVariable String goodId) {
+       itemService.deleteItem(Integer.parseInt(goodId));
+        return ResponseEntity.ok(itemService.getAll());
     }
 
     @PreAuthorize("hasAuthority('VIEW_ADMIN')")
     @RequestMapping(value = "/add-good", method = RequestMethod.POST)
     public ResponseEntity<ItemDto> bookFormControllerPost(@Valid @RequestBody final ItemDto itemModel) {
 
-        ItemEntity itemEntity = itemService.createItem(itemModel.getName(), itemModel.getManufacturer(), itemModel.getPrice(),
-                                                        itemModel.getDescription(), itemModel.getQuantity(), itemModel.getCategory());
+        ItemEntity itemEntity = itemService.createItem(itemModel.getName(),
+                                                        itemModel.getDescription(),  itemModel.getPrice(), itemModel.getQuantity(), itemModel.getCategory());
         ItemDto itemDto = new ItemDto();
-        itemDto.setName(item.getAuthor());
-        itemDto.setManufacturer(itemEntity.getManufacturer());
+        itemDto.setName(itemEntity.getName());
         itemDto.setPrice(itemEntity.getPrice());
         itemDto.setDescription(itemEntity.getDescription());
         itemDto.setQuantity(itemEntity.getQuantity());
