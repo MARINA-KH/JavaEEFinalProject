@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Storage</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <ul th:if="${#authorization.expression('hasAuthority(''VIEW_ADMIN'')')}" class="nav nav-tabs nav-justified md-tabs" role="tablist">
+                <li class="nav-item"  role="tab"><a href="#a" data-toggle="tab">Add good</a></li>
+                <li class="nav-item"  role="tab"><a href="#b" data-toggle="tab">Add user</a></li>
+                <li class="nav-item"  role="tab"><a href="#c" data-toggle="tab">Add group</a></li>
+            </ul>
+
+            <div th:if="${#authorization.expression('hasAuthority(''VIEW_ADMIN'')')}" class="tab-content">
+                <div class="tab-pane active" id="a" role="tabpanel">
+                    <!-- Default form login -->
+                    <form id="createGood" class="text-center border border-light" action="post">
+
+                        <p class="h4 mb-4">Add good</p>
+
+                        <label>Name:
+                            <input class="form-control" name="name" type="text">
+                        </label>
+                        <label>Manufacturer:
+                            <input  class="form-control" name="manuf" type="text"/>
+                        </label>
+                        <label>Price:
+                            <input class="form-control" name="price" type="text"/>
+                        </label>
+                        <label>Quantity:
+                            <input class="form-control" name="quant" type="text"/>
+                        </label>
+                        <label>Description:
+                            <input class="form-control" name="descr" type="text"/>
+                        </label>
+                        <label>Group:
+                            <input class="form-control" name="group" type="text"/>
+                        </label>
+                        <button class="btn btn-info btn-block my-4" type="submit">Add</button>
+
+                    </form>
+
+                    <!-- Default form login -->
+                </div>
+                <div class="tab-pane" id="b" role="tabpanel">
+                    <form id="createUser" class="h-100 text-center border border-light" method="post">
+                        <p class="h4">Add user</p>
+                        <label>Username:
+                            <input class="form-control" name="username" type="text">
+                        </label>
+                        <label>Email:
+                            <input class="form-control" name="mail" type="text"/>
+                        </label>
+                        <label>Password:
+                            <input class="form-control" name="password" type="text"/>
+                        </label>
+                        <label>User authority:
+                            <input class="form-control" name="auth" type="text"/>
+                        </label>
+                        <button type="submit" class="btn btn-info btn-block my-4">Add</button>
+                    </form>
+
+                </div>
+                <div class="tab-pane" id="c" role="tabpanel">
+                    <form id="createGoodsGroup" class="h-100 text-center border border-light" method="post">
+                        <p class="h4">Add group</p>
+
+                        <label>Name:
+                            <input class="form-control" name="name" type="text">
+                        </label>
+                        <label>Description:
+                            <input class="form-control" name="descr" type="text"/>
+                        </label>
+                        <br/>
+                        <button type="submit" class="btn btn-info btn-block my-4">Add</button>
+                    </form>
+                </div>
+            </div>
+            <div id="formError"></div>
+
+            <ul>
+            <li><a href="/login">Change user</a></li>
+        </ul>
+
+            <!-- Editable table -->
+            <div class="card">
+                <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Groups</h3>
+                <div class="card-body">
+                    <div class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+              class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Description</th>
+                                <th th:if="${#authorization.expression('hasAuthority(''VIEW_ADMIN'')')}" class="text-center">Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody id="groupsTable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Editable table -->
+            <!-- Editable table -->
+            <div class="card">
+                <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Goods</h3>
+                <div class="card-body">
+                    <div class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+              class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Manufacturer</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Description</th>
+                                <th th:if="${#authorization.expression('hasAuthority(''VIEW_ADMIN'')')}" class="text-center">Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody id="goodsTable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Editable table -->
+            <form id="doSearch" method="post">
+                <br>
+                <label class="h6">Search:
+                    <select name="select" placeholder="Search by">
+                        <option th:value="name">Name</option>
+                        <option th:value="manuf">Manufacturer</option>
+                        <option th:value="price">Price</option>
+                    </select>
+                </label>
+                <input type="text" name="searchWord">
+                <button type="submit">Search</button>
+
+            </form>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+
+
+
+<th:authorize access="hasAuthority(''VIEW_ADMIN'')" var="isAdmin"></th:authorize>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(
+        function () {
+            $('#createGood').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/add-good',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        name: $(this).find('[name=name]').val(),
+                        manufacturer: $(this).find('[name=manuf]').val(),
+                        price: $(this).find('[name=price]').val(),
+                        description: $(this).find('[name=descr]').val(),
+                        quantity: $(this).find('[name=quant]').val()
+
+                    }),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                    },
+                    success: function () {
+                        loadGoods();
+                        alert("Good added");
+                    },
+                    error: function (xhr) {
+                        let $goods = $('#formError');
+                        $goods.empty();
+                        $goods.append('<p>'+JSON.stringify(xhr.responseJSON, null, 4)+'</p>');
+                    }
+                })
+            });
+
+            $('#createGoodsGroup').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/add-goodsgroup',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        name: $(this).find('[name=name]').val(),
+                        description: $(this).find('[name=descr]').val()
+
+
+                    }),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                    },
+                    success: function () {
+                        loadGroups();
+                        alert("Goods group added");
+                    },
+                    error: function (xhr) {
+                        let $goods = $('#formError');
+                        $goods.empty();
+                        $goods.append('<p>'+JSON.stringify(xhr.responseJSON, null, 4)+'</p>');
+                    }
+                })
+            });
+
+            $('#createUser').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/add-user',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        username: $(this).find('[name=username]').val(),
+                        password: $(this).find('[name=password]').val(),
+                        email: $(this).find('[name=mail]').val(),
+                        permission: $(this).find('[name=auth]').val()
+
+                    }),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                    },
+                    success: function () {
+                        loadGoods();
+                        alert("User added");
+                    },
+                    error: function (xhr) {
+                        let $goods = $('#formError');
+                        $goods.empty();
+                        $goods.append('<p>'+JSON.stringify(xhr.responseJSON, null, 4)+'</p>');
+                    }
+                })
+            });
+
+            $('#doSearch').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/search',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        searchInput: $(this).find('[name=searchWord]').val(),
+                        searchCriteria: $(this).find('[name=select]').val()
+                    }),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                    },
+                    success: function (response) {
+                        setGoods(response);
+                    }
+                })
+
+            });
+
+            loadGoods();
+        });
+
+
+    function loadGoods() {
+        $.ajax({
+                url: '/goods',
+                success: (response) => (setGoods(response))
+            }
+        )
+    }
+    function deleteGood(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/goods/${id}`,
+            dataType: 'json',
+            success: function (response) {
+                loadGoods(response);
+            }
+        });
+    }
+
+
+    function setGoods(data) {
+        let $goods = $('#goodsTable');
+
+        $goods.empty();
+
+
+            data.forEach(good => {
+            $goods.append('<tr><td>' + good.id + '</td>' +
+                '<td class="pt-3-half" >' + good.name + '</td>' +
+                '<td class="pt-3-half" >' + good.manufacturer + '</td>' +
+                '<td class="pt-3-half" >' + good.quantity + '</td>' +
+                '<td class="pt-3-half" >' + good.price + '</td>' +
+                '<td class="pt-3-half" >'+ good.description + '</td>' +
+
+
+                '<td>' +
+                '<button onClick="deleteGood(\'' + good.id + '\')" >Delete</button></td></tr>');
+        })
+
+    }
+
+
+    function loadGroups() {
+        $.ajax({
+                url: '/groups',
+                success: (response) => (setGroups(response))
+            }
+        )
+    }
+
+    function deleteGroup(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/groups/${id}`,
+            dataType: 'json',
+            success: function (response) {
+                loadGroups(response);
+            }
+        });
+    }
+
+
+    function setGroups(data) {
+        let $groups = $('#groupsTable');
+
+
+        $groups.empty();
+        data.forEach(good => {
+            $groups.append('<tr><td>' + good.id + '</td>' +
+                '<td class="pt-3-half" >' + good.name + '</td>' +
+                '<td class="pt-3-half" >'+ good.description + '</td>' +
+
+
+                '<td>' +
+                '<button onClick="deleteGroup(\'' + good.id + '\')" >Delete</button></td></tr>');
+        })
+
+    }
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
