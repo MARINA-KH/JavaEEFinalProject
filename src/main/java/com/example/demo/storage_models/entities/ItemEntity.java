@@ -28,5 +28,13 @@ public class ItemEntity {
     @Column(name = "price")
     public double price;
     @Column(name = "category_id")
+    @ManyToOne
+    @JoinTable(
+            name="item_to_category",
+            joinColumns = @JoinColumn(name="item_id"),
+            inverseJoinColumns = @JoinColumn(name="category_id")
+    )
     public int category_id;
+
+
 }
