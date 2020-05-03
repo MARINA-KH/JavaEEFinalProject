@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="808378a9-aada-4d5c-a963-6876822101b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/storage_models/entities/CategoryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/storage_models/entities/CategoryEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/storage_models/entities/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/storage_models/entities/ItemEntity.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -26,7 +31,19 @@
     <select />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/MARINA-KH/JavaEEFinalProject.git" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -35,25 +52,22 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1bMRRLakP2vIgbaCVivdcou8vRv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="sqlite" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -63,6 +77,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -76,6 +102,21 @@
       <updated>1588439966782</updated>
       <workItem from="1588439972350" duration="1683000" />
     </task>
+    <task id="LOCAL-00001" summary="add entities to store items">
+      <created>1588515062312</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588515062312</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add entities to store items">
+      <created>1588522334894</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588522334894</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,10 +127,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add entities to store items" />
+    <option name="LAST_COMMIT_MESSAGE" value="add entities to store items" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="808" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1588514701582">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="808" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1588514701582" />
+    <state x="374" y="0" key="CommitChangelistDialog2" timestamp="1588522332444">
+      <screen x="0" y="0" width="1280" height="688" />
+    </state>
+    <state x="374" y="0" key="CommitChangelistDialog2/0.0.1280.688@0.0.1280.688" timestamp="1588522332444" />
+    <state x="561" y="110" key="CommitChangelistDialog2/0.0.1920.1032@0.0.1920.1032" timestamp="1588515058176" />
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2" timestamp="1588515166275">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="552" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1032@0.0.1920.1032" timestamp="1588515166275" />
+    <state x="337" y="168" key="com.intellij.ide.util.TipDialog" timestamp="1588522172768">
+      <screen x="0" y="0" width="1280" height="688" />
+    </state>
+    <state x="337" y="168" key="com.intellij.ide.util.TipDialog/0.0.1280.688@0.0.1280.688" timestamp="1588522172768" />
+    <state x="450" y="261" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588522389055">
+      <screen x="0" y="0" width="1280" height="688" />
+    </state>
+    <state x="450" y="261" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.688@0.0.1280.688" timestamp="1588522389055" />
   </component>
 </project>
