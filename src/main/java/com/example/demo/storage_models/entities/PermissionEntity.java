@@ -1,6 +1,7 @@
-package com.example.demo.storage_models.entities;
+package com.example.demo.model;
 
-import com.example.demo.storage_models.UserGroup;
+
+import com.example.demo.model.type.Permission;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,18 +10,19 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "permissions")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GroupEntity {
+public class PermissionEntity {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int id;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "group", unique = true)
-    private UserGroup group;
+    @Column(name = "permission", unique = true)
+    private Permission permission;
+
 }
