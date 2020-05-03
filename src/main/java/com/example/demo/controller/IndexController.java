@@ -1,38 +1,25 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.BookEntity;
 import com.example.demo.service.BookService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
 
-    private final BookService bookService;
 
-    public IndexController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @GetMapping("/")
     public String index() {
-        return "index";
-    }
-
-    @PreAuthorize("isFullyAuthenticated()")
-    @GetMapping("/profile")
-    public String profile() {
-        return "profile";
+        return "login";
     }
 
 
-    @GetMapping("/book_catalog")
-    public String bookCatalog() {
-        return "book_catalog";
+
+
+    @GetMapping("/goods_list")
+    public String goodsList() {
+        return "goods_list";
     }
 
     @GetMapping("/login")
@@ -40,15 +27,5 @@ public class IndexController {
         return "login";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
 
-    @RequestMapping(value = "/book/{bookId}")
-    public String getData(@PathVariable("bookId") Integer bookId, Model model) {
-        BookEntity book = bookService.getBookById(bookId);
-        model.addAttribute("book", book);
-        return "book_details";
-    }
 }
